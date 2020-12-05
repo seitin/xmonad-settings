@@ -6,6 +6,8 @@
 --
 -- Normally, you'd only override those defaults you care about.
 --
+--
+
 
 import XMonad
 import Data.Monoid
@@ -15,7 +17,6 @@ import XMonad.Util.SpawnOnce
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Config.Desktop
-import XMonad.Wallpaper
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -72,7 +73,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_x     ), spawn "i3lock --ignore-empty-password -i /home/seiti/Pictures/celeste-lock.png")
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run")
+    -- launch vimb
+    , ((modm,               xK_o     ), spawn "chromium")
+    -- launch WhatsApp
+    , ((modm .|. shiftMask, xK_o     ), spawn "chromium https://web.whatsapp.com/")
 
+    , ((0   ,               0x1008FF11), spawn "amixer -q sset Master 2%-")
+    , ((0   ,               0x1008FF13), spawn "amixer -q sset Master 2%+")
+    , ((0   ,               0x1008FF12), spawn "amixer set Master toggl")
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
@@ -261,7 +269,7 @@ myStartupHook = return ()
 --
 main = do
   xmproc <- spawnPipe "xmobar -a right /home/seiti/.config/xmobar/xmobarrc" 
-  spawnPipe "setxkbmap -option 'grp:ctrl_alt_toggle' -layout us,br -variant intl,"
+  spawnPipe "setxkbmap -option 'grp:ctrl_alt_toggle' -layout us -variant intl"
   spawnPipe "xcompmgr"
   spawnPipe "feh --bg-fill ~/Pictures/Wallpapers/celeste.jpg"
   xmonad $ docks defaults
