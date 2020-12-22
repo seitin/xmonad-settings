@@ -70,16 +70,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
-    , ((modm,               xK_x     ), spawn "i3lock --ignore-empty-password -i /home/seiti/Pictures/celeste-lock.png")
+    -- , ((modm,               xK_x     ), spawn "i3lock --ignore-empty-password -i /home/seiti/Pictures/Wallpapers/02.png")
+    , ((modm,               xK_x     ), spawn "./.lock.sh --image-fill /home/seiti/Pictures/Wallpapers/03.jpg")
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm,               xK_p     ), spawn "rofi -show run -p 'Run'")
     -- launch vimb
-    , ((modm,               xK_o     ), spawn "chromium")
+    , ((modm,               xK_o     ), spawn "vimb")
     -- launch WhatsApp
-    , ((modm .|. shiftMask, xK_o     ), spawn "chromium https://web.whatsapp.com/")
+    , ((modm .|. shiftMask, xK_o     ), spawn "vimb --cmd 'set user-agent=googlebot' https://web.whatsapp.com/")
 
-    , ((0   ,               0x1008FF11), spawn "amixer -q sset Master 2%-")
-    , ((0   ,               0x1008FF13), spawn "amixer -q sset Master 2%+")
+    , ((0   ,               0x1008FF11), spawn "amixer -q sset Master 5%-")
+    , ((0   ,               0x1008FF13), spawn "amixer -q sset Master 5%+")
     , ((0   ,               0x1008FF12), spawn "amixer set Master toggl")
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -271,7 +272,7 @@ main = do
   xmproc <- spawnPipe "xmobar -a right /home/seiti/.config/xmobar/xmobarrc" 
   spawnPipe "setxkbmap -option 'grp:ctrl_alt_toggle' -layout us -variant intl"
   spawnPipe "xcompmgr"
-  spawnPipe "feh --bg-fill ~/Pictures/Wallpapers/celeste.jpg"
+  spawnPipe "feh --bg-fill ~/Pictures/Wallpapers/02.png"
   xmonad $ docks defaults
  
  
