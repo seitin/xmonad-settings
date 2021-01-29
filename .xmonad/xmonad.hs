@@ -70,8 +70,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
-    -- , ((modm,               xK_x     ), spawn "i3lock --ignore-empty-password -i /home/seiti/Pictures/Wallpapers/02.png")
-    , ((modm,               xK_x     ), spawn "./.lock.sh --image-fill /home/seiti/Pictures/Wallpapers/03.jpg")
+    -- , ((modm,               xK_x     ), spawn "i3lock --ignore-empty-password -i ~/Pictures/Wallpapers/02.png")
+    , ((modm,               xK_x     ), spawn "./.lock.sh --image-fill ~/Pictures/Wallpapers/03.jpg")
     -- suspend
     , ((modm .|. shiftMask, xK_x     ), spawn "systemctl suspend")
     -- launch dmenu
@@ -271,7 +271,7 @@ myStartupHook = return ()
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "xmobar -a right /home/seiti/.config/xmobar/xmobarrc" 
+  xmproc <- spawnPipe "xmobar -a right ~/.config/xmobar/xmobarrc" 
   spawnPipe "setxkbmap -option 'grp:ctrl_alt_toggle' -layout us -variant intl"
   spawnPipe "xcompmgr"
   spawnPipe "killall dunst || wait 0.5 || dunst"
